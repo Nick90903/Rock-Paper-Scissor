@@ -59,5 +59,9 @@ let playerScore = 0;
             console.log("something's gone horribly wrong");
         }
 
-        console.log(playerScore);
+        if(playerScore >= 3) {
+            console.log('Player Wins')
+        } else (
+            console.log('Computer Wins')
+        )
     }
