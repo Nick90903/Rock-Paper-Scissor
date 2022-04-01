@@ -4,9 +4,18 @@ let computerInput;
 
 let playerScore = 0;
 
+let computerScore = 0;
+
 const container = document.querySelector('#container');
+
 const content = document.createElement('div');
 content.classList.add('content');
+
+const scoreCount = document.createElement('div');
+scoreCount.classList.add('scoreCount');
+
+const runningScore = document.createElement('div');
+runningScore.classList.add('runningScore');
 
 const rbtn = document.querySelector('#btn');
 rbtn.addEventListener('click', () => {
@@ -65,6 +74,7 @@ function playRound() {
         content.textContent = 'Try Again';
     } else if (playerInput === 'rock' && computerInput === 'paper') {
         content.textContent = 'Computer Wins';
+        computerScore++;
     } else if (playerInput === 'rock' && computerInput === 'scissors') {
         content.textContent = 'Player Wins';
         playerScore++;
@@ -73,8 +83,10 @@ function playRound() {
         playerScore++;
     } else if (playerInput === 'paper' && computerInput === 'scissors') {
         content.textContent = 'Computer Wins';
+        computerScore++;
     } else if (playerInput === 'scissors' && computerInput === 'rock') {
         content.textContent = 'Computer Wins';
+        computerScore++;
     } else if (playerInput === 'scissors' && computerInput === 'paper') {
         content.textContent = 'Player Wins';
         playerScore++;
@@ -83,6 +95,19 @@ function playRound() {
     }
 
     container.appendChild(content);
+
+    runningScore.textContent = 'Player: ' + playerScore.toString() + ' Computer: ' + computerScore.toString();
+    container.appendChild(runningScore);
+
+    if(playerScore == 5) {
+        scoreCount.textContent = 'Player Wins The Game';
+        container.appendChild(scoreCount);
+    } else if(computerScore == 5) {
+        scoreCount.textContent = 'Computer Wins The Game';
+        container.appendChild(scoreCount);
+    }
+
+
     console.log('Container Appended');
 }
 
