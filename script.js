@@ -4,64 +4,88 @@ let computerInput;
 
 let playerScore = 0;
 
-    for (var i = 1; i < 6; i++) {
+const container = document.querySelector('#container');
+const content = document.createElement('div');
+content.classList.add('content');
 
-        playerInput = prompt('rock, paper, scissors').toLowerCase();
-        console.log(playerInput);
+const rbtn = document.querySelector('#btn');
+rbtn.addEventListener('click', () => {
+  playerInput = 'rock';
+  playRound();
+});
 
-        computerInput = computerPlay();
-        
-        function computerPlay (){
-        
-        let rNum = 0;
+const pbtn = document.querySelector('#paper');
+pbtn.addEventListener('click', () => {
+  playerInput = 'paper';
+  playRound();
+});
 
-        rNum = Math.floor(Math.random() * (3-0) + 0);
-        console.log(rNum);
-        
-        switch (rNum)
-            {
-                case 0:
-                    console.log('rock');
-                    return 'rock';
-                    break;
+const sbtn = document.querySelector('#scissors');
+sbtn.addEventListener('click', () => {
+  playerInput = 'scissors';
+  playRound();
+});
 
-                case 1:
-                    console.log('paper');
-                    return 'paper';
-                    break;
-                
-                case 2:
-                    console.log('scissors');
-                    return 'scissors';
-                    break;
-                
-            }
+
+
+    //for (var i = 1; i < 6; i++) {
+function playRound() {
+    console.log('playerInput:' + playerInput);
+
+    computerInput = computerPlay();
+    
+    function computerPlay (){
+    
+    let rNum = 0;
+
+    rNum = Math.floor(Math.random() * (3-0) + 0);
+    console.log('RandomNumber: ' + rNum);
+    
+    switch (rNum)
+        {
+            case 0:
+                console.log('computer played: rock');
+                return 'rock';
+                break;
+
+            case 1:
+                console.log('computer played: paper');
+                return 'paper';
+                break;
+            
+            case 2:
+                console.log('computer played: scissors');
+                return 'scissors';
+                break;
+            
         }
-
-        if(playerInput == computerInput) {
-            console.log('try again');
-        } else if (playerInput === 'rock' && computerInput === 'paper') {
-            console.log('Computer Wins');
-        } else if (playerInput === 'rock' && computerInput === 'scissors') {
-            console.log('Player Wins');
-            playerScore++;
-        } else if (playerInput === 'paper' && computerInput === 'rock') {
-            console.log('Player Wins');
-            playerScore++;
-        } else if (playerInput === 'paper' && computerInput === 'scissors') {
-            console.log('Computer Wins');
-        } else if (playerInput === 'scissors' && computerInput === 'rock') {
-            console.log('Computer Wins');
-        } else if (playerInput === 'scissors' && computerInput === 'paper') {
-            console.log('Player Wins');
-            playerScore++;
-        } else {
-            console.log("something's gone horribly wrong");
-        }
-
-        if(playerScore >= 3) {
-            console.log('Player Wins')
-        } else (
-            console.log('Computer Wins')
-        )
     }
+
+    if(playerInput == computerInput) {
+        content.textContent = 'Try Again';
+    } else if (playerInput === 'rock' && computerInput === 'paper') {
+        content.textContent = 'Computer Wins';
+    } else if (playerInput === 'rock' && computerInput === 'scissors') {
+        content.textContent = 'Player Wins';
+        playerScore++;
+    } else if (playerInput === 'paper' && computerInput === 'rock') {
+        content.textContent = 'Player Wins';
+        playerScore++;
+    } else if (playerInput === 'paper' && computerInput === 'scissors') {
+        content.textContent = 'Computer Wins';
+    } else if (playerInput === 'scissors' && computerInput === 'rock') {
+        content.textContent = 'Computer Wins';
+    } else if (playerInput === 'scissors' && computerInput === 'paper') {
+        content.textContent = 'Player Wins';
+        playerScore++;
+    } else {
+        console.log("something's gone horribly wrong");
+    }
+
+    container.appendChild(content);
+    console.log('Container Appended');
+}
+
+
+
+   //}
